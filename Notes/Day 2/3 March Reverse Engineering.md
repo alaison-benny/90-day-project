@@ -3,6 +3,7 @@
 take the example of below given repo. how to reverse engineer and study ഒന്നിലധികം കണ്ടെയ്‌നറുകൾ (DB, Redis, App) എങ്ങനെ ഒന്നിച്ച് പ്രവർത്തിക്കുന്നു annu from the repo? give me step by step process to reverse engineer this repo?
 
 "tiangolo/full-stack-fastapi-templateഒരു കംപ്ലീറ്റ് വെബ് ആപ്പ് സെറ്റപ്പ്.backend/, docker-compose.yml, scripts/build.shഒന്നിലധികം കണ്ടെയ്‌നറുകൾ (DB, Redis, App) എങ്ങനെ ഒന്നിച്ച് പ്രവർത്തിക്കുന്നു."
+
 ========================
 
 Tiangolo-യുടെ `full-stack-fastapi-template` എന്നത് ഒരു "Gold Standard" പ്രോജക്റ്റാണ്. ഒന്നിലധികം കണ്ടെയ്‌നറുകൾ തമ്മിലുള്ള ആശയവിനിമയം (Inter-container communication) പഠിക്കാൻ ഇതിനെ താഴെ പറയുന്ന 5 സ്റ്റെപ്പുകളിലൂടെ നമുക്ക് **Reverse Engineer** ചെയ്യാം.
