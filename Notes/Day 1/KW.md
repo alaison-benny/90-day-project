@@ -7,3 +7,4 @@ yes explain me Terraform Module generative AI application(ChatGPT) example
 ------------------------------------
 Just print below given passage"
 -----------------------------------
+explain me below in malayalam, expalin line by line and explain in simple language "
