@@ -9,5 +9,5 @@ Just print below given passage"
 -----------------------------------
 explain me below in malayalam, expalin line by line and explain in simple language "
 ====================
-check below given repo, then tell me what is each repo about? what is end  product? what technologies and tools used in that? what are the files and folders and files in that repo? what is the need of each file and folder? what I want to study from each repo if I want to be a ML platform engineer? what i do reverse engineer with each folders and files for becoming a good ML platform engineer and understanding real world application and infrastrecture?"
+check below given repo, then tell me what is each repo about? what is end  product? what technologies and tools used in that? what are the files and folders in that repo? what is the need of each file and folder? what I want to study from each repo if I want to be a ML platform engineer? what i do reverse engineer with each folders and files for becoming a good ML platform engineer and understanding real world application and infrastrecture?"
 =============
