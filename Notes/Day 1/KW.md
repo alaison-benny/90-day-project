@@ -8,3 +8,6 @@ yes explain me Terraform Module generative AI application(ChatGPT) example
 Just print below given passage"
 -----------------------------------
 explain me below in malayalam, expalin line by line and explain in simple language "
+====================
+check below given repos, then tell me what is each repo about? what are the files and folders and files in each repo? what I want to study from each repo? what i do reverse engineer with each repo for becoming a good ML platform engineer? "
+=============
