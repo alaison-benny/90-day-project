@@ -10,7 +10,7 @@ Configuration: I need to mount a config file from [LOCAL_PATH] to [CONTAINER_PAT
 
 Purpose: I am using it for [REASON].
 Please provide the YAML block with correct indentation and explain why you chose the specific image and port."
-
+-----------------------
 eg: നിങ്ങളുടെ ഈ പ്രോജക്റ്റിന് നൽകാവുന്ന കൃത്യമായ പ്രോംപ്റ്റ്:
 
 "I want to add Grafana, Flower, and Prometheus to my docker-compose.yaml.
