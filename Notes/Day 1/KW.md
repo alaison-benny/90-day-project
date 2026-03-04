@@ -1,3 +1,30 @@
+## നിങ്ങൾക്ക് ഏതൊരു ടൂളും docker-compose.yaml-ലേക്ക് ആഡ് ചെയ്യാൻ ഈ ടെംപ്ലേറ്റ് ഉപയോഗിക്കാം:
+Prompt Template:
+"I want to add [TOOL_NAME] to my existing docker-compose.yaml file.
+
+Current Services: [LIST_YOUR_CURRENT_SERVICES_LIKE_REDIS_API]
+
+Network/Dependencies: It should depend on [DEPENDENCY_NAME].
+
+Configuration: I need to mount a config file from [LOCAL_PATH] to [CONTAINER_PATH].
+
+Purpose: I am using it for [REASON].
+Please provide the YAML block with correct indentation and explain why you chose the specific image and port."
+
+eg: നിങ്ങളുടെ ഈ പ്രോജക്റ്റിന് നൽകാവുന്ന കൃത്യമായ പ്രോംപ്റ്റ്:
+
+"I want to add Grafana, Flower, and Prometheus to my docker-compose.yaml.
+
+Current Services: Redis, Worker (Celery), and API (FastAPI).
+
+Dependencies: Flower depends on Redis and Worker. Prometheus should monitor all.
+
+Ports: Use standard default ports for all.
+
+Volume: Prometheus needs a prometheus.yml config.
+Please give me the code block."
+-----------------------
+## to study theory
 what are the basic concepts, main concepts, advanced concepts, ml ops concepts, main things a ML platform engineer should have clear understanding in Terraform? teach me the theory. explain me in detail, I am totally new to this, explain me with a generative AI application(ChatGPT) examples. reply me in Malayalam.
 ------------------------------
 What are the main contents you want to add while writing a production grade in main.tf file for a generative AI application(ChatGPT)?
@@ -22,3 +49,5 @@ Monitoring: Flower ഉപയോഗിച്ച് പരാജയപ്പെട
 API Security: ഈ ആപ്ലിക്കേഷനിൽ ഒരു API Key സെക്യൂരിറ്റി കൂടി ചേർക്കാൻ ശ്രമിക്കുക."
 Keep in  mind I have windows 11 laptop with python, uv, docker, vs code installed, aws free trail account. explain me step by step process in detail, I am totally new to this. reply me in Malayalam.
 ==================
+
+നിങ്ങൾക്ക് ഏതൊരു ടൂളും docker-compose.yaml-ലേക്ക് ആഡ് ചെയ്യാൻ ഈ ടെംപ്ലേറ്റ് ഉപയോഗിക്കാം:
