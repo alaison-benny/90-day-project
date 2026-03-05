@@ -21,6 +21,7 @@ DevSecOps: Implement DevSecOps practices, integrating security scanning and moni
 
 ## KW: show me some repos with below technologies to practice projec/ add below given technologies to my project for practising
 
+GenAI applications (e.g., LLM orchestration, LangChain, RAG pipelines).
 ML/AI stack (Spark, MLFlow, Delta Lake, PyTorch incl. Distributed, TensorFlow, ONNX) backend technologies such as Helm and Kubernetes
 SQL and NoSQL database
 
