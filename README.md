@@ -1,3 +1,5 @@
+<img width="675" height="471" alt="image" src="https://github.com/user-attachments/assets/5d62a56b-ca5a-4288-b591-0780eea3e0d3" />
+
 # 90-day-project
 
 നിങ്ങൾ ഒരു ദിവസം **12 മണിക്കൂർ** വീതം ഇതിനായി മാറ്റിവെക്കുകയാണെങ്കിൽ, ഏകദേശം **3 ആഴ്ചയ്ക്കുള്ളിൽ (21 ദിവസങ്ങൾ)** ഈ പ്രോജക്റ്റ് ഒരു ഇൻഡസ്ട്രി ലെവൽ നിലവാരത്തിൽ പൂർത്തിയാക്കാൻ സാധിക്കും. ഓരോ ഘട്ടത്തിനും എടുക്കാവുന്ന ഏകദേശ സമയക്രമം താഴെ നൽകുന്നു:
@@ -47,5 +49,4 @@ AI മോഡലുകളുടെ നിർമ്മാണവും അവയു
 
 ### Start your 21 day strek. Consistancy is the key. ജയിച്ചിട്രാ Maara
 
-<img width="675" height="471" alt="image" src="https://github.com/user-attachments/assets/5d62a56b-ca5a-4288-b591-0780eea3e0d3" />
 
