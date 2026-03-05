@@ -33,6 +33,10 @@ Devops engineer
 
 finance 
 crypto
+Banking
+Insurance
+Automotive
+Retai
 
 -----------------------------------------
 
