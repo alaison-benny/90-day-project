@@ -1,4 +1,5 @@
-<img width="675" height="471" alt="image" src="https://github.com/user-attachments/assets/5d62a56b-ca5a-4288-b591-0780eea3e0d3" />
+<img width="870" height="865" alt="image" src="https://github.com/user-attachments/assets/64cd5573-b925-4b96-8bec-1362588baec8" />
+
 
 # 90-day-project
 
