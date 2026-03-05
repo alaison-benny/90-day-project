@@ -1,4 +1,4 @@
-<img width="670" height="665" alt="image" src="https://github.com/user-attachments/assets/64cd5573-b925-4b96-8bec-1362588baec8" />
+<img width="370" height="365" alt="image" src="https://github.com/user-attachments/assets/64cd5573-b925-4b96-8bec-1362588baec8" />
 
 # 90-day-project
 
