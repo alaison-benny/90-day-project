@@ -1,6 +1,6 @@
 ## Daily go through this to get clarity on your vision and mission
 
-building or maintaining scalable ML infrastructure (e.g., **CI/CD for models, auto-scaling, load balancing, blue-green deployment, canary releases, shadow testing,** etc.).
+building or maintaining scalable ML infrastructure (e.g., *CI/CD for models, auto-scaling, load balancing, blue-green deployment, canary releases, shadow testing,* etc.).
 Strong programming skills in Python and familiarity with **ML frameworks (e.g., PyTorch, TensorFlow, Scikit-learn**).
 Hands-on experience with tools like **Vertex AI, MLflow, Kubeflow, Airflow, or SageMaker**.
 Design, develop, test, maintain and improve the AI/ML infrastructure
