@@ -9,3 +9,15 @@ Automation & Reliability: Automate infrastructure processes with a strong focus 
 DevSecOps: Implement DevSecOps practices, integrating security scanning and monitoring tools into the deployment pipeline.
 
 ---------------------------------------
+
+Domains
+
+finance 
+crypto
+
+-----------------------------------------
+
+## Roles
+
+Platform engineer
+Devops engineer
