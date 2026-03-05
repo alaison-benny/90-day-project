@@ -1,5 +1,8 @@
 ## Daily go through this to get clarity on your vision and mission
 
+building or maintaining scalable ML infrastructure (e.g., CI/CD for models, auto-scaling, load balancing, blue-green deployment, canary releases, shadow testing, etc.).
+Strong programming skills in Python and familiarity with ML frameworks (e.g., PyTorch, TensorFlow, Scikit-learn).
+Hands-on experience with tools like Vertex AI, MLflow, Kubeflow, Airflow, or SageMaker.
 Design, develop, test, maintain and improve the AI/ML infrastructure
 Write high-quality, clean, maintainable, secure and reliable DevOps routines and Helm Charts
 Work across the entire backend stack, from integrating with event-driven architectures using Kafka, gRPC as well as REST APIs and robust data engineering pipelines
