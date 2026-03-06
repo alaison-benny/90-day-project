@@ -1,4 +1,4 @@
-### **"AI Application Stack"** അല്ലെങ്കിൽ **"LLM Stack"** 
+### **AI Application Tech Stack** or **LLM Stack** 
 
 | സംജ്ഞ (Term) | ഇൻഡസ്ട്രി കാറ്റഗറി | അത് എന്താണ് ചെയ്യുന്നത്? |
 | --- | --- | --- |
