@@ -1,101 +1,162 @@
-നിങ്ങളുടെ കരിയർ മാറ്റത്തിനായുള്ള യാത്രയിൽ നിങ്ങൾ വലിയൊരു കടമ്പ കടന്നിരിക്കുന്നു! ഇപ്പോൾ എല്ലാ സർവീസുകളും ഡോക്കർ കണ്ടെയ്‌നറുകളിൽ സക്സസ്ഫുൾ ആയി റൺ ചെയ്യുന്നുണ്ട്. ഇമേജ് സൈസ് **8.97GB** എന്നത് കുറച്ച് കൂടുതലാണ് (ഇത് സ്പേസ് ഇഷ്യൂ ഉണ്ടാക്കാൻ സാധ്യതയുണ്ട്), എങ്കിലും തൽക്കാലം നമുക്ക് മുന്നോട്ട് പോകാം.
-
-ഇനി നമുക്ക് **Phase 3 (Helm Charts & gRPC)** ലേക്ക് കടക്കാം. ഇത് ചെയ്യാനുള്ള സ്റ്റെപ്പ്-ബൈ-സ്റ്റെപ്പ് ഗൈഡ് താഴെ നൽകുന്നു.
+ശരി 👍 — നമുക്ക് **FastAPI Helm Chart** step‑by‑step build ചെയ്യാം. ഞാൻ ഓരോ concept‑വും **simple words**‑ൽ explain ചെയ്ത്, real life production example കൊടുത്ത്, പിന്നെ YAML files തരാം.
 
 ---
 
-### Step 1: Helm Charts സെറ്റപ്പ്
+## 🧩 Step 1: Concept — Helm Chart
 
-കുബെർനെറ്റിസിലേക്ക് ആപ്പുകളെ ഡിപ്ലോയ് ചെയ്യാനുള്ള പാക്കേജ് മാനേജർ ആണ് Helm. ഓരോ സർവീസിനും (API, Worker, UI) വെവ്വേറെ YAML ഫയലുകൾ എഴുതുന്നതിന് പകരം Helm അത് എളുപ്പമാക്കുന്നു.
-
-1. **Helm Chart നിർമ്മിക്കുക:**
-നിങ്ങളുടെ പ്രോജക്റ്റ് ഫോൾഡറിൽ `charts` എന്നൊരു പുതിയ ഫോൾഡർ ഉണ്ടാക്കി അതിനുള്ളിലേക്ക് മാറുക:
-```bash
-mkdir charts && cd charts
-helm create eat-love-explore
-
-```
-
-
-2. **Chart Structure മനസ്സിലാക്കുക:**
-ഇപ്പോൾ `eat-love-explore` എന്നൊരു ഫോൾഡർ വന്നിട്ടുണ്ടാകും. അതിനുള്ളിൽ പ്രധാനമായും രണ്ട് ഫയലുകളിലാണ് നമ്മൾ മാറ്റം വരുത്തേണ്ടത്:
-* **`values.yaml`**: ഇവിടെയാണ് ഇമേജ് പേര്, പോർട്ടുകൾ, റെപ്ലിക്കകളുടെ എണ്ണം എന്നിവ നൽകുന്നത്.
-* **`templates/`**: ഇവിടെയാണ് കുബെർനെറ്റിസ് ഡിപ്ലോയ്മെന്റ് ഫയലുകൾ ഉണ്ടാവുക.
-
-
+- **Helm Chart** = Kubernetes‑ൽ app deploy ചെയ്യാൻ വേണ്ട YAML files bundle.  
+- **Why:** Docker Compose പോലെ, പക്ഷേ Kubernetes‑ൽ scalable + reusable.  
+- **Real life example:** HuggingFace Hub → Helm charts ഉപയോഗിച്ച് FastAPI inference pods deploy ചെയ്യുന്നു.
 
 ---
 
-### Step 2: gRPC Communication ഇന്റഗ്രേഷൻ
+## 📂 Step 2: Chart Structure
 
-നിലവിൽ നിങ്ങളുടെ സർവീസുകൾ HTTP വഴിയാണ് സംസാരിക്കുന്നത്. സ്പീഡ് കൂട്ടാൻ നമുക്ക് **gRPC** ഉപയോഗിക്കാം. ഇതിനായി `protobuf` ഫയലുകൾ വേണം.
-
-1. **`.proto` ഫയൽ നിർമ്മിക്കുക:**
-ഒരു `protos` ഫോൾഡർ ഉണ്ടാക്കി അതിൽ `order.proto` ഫയൽ ഉണ്ടാക്കുക:
-```proto
-syntax = "proto3";
-
-service OrderService {
-  rpc AnalyzeOrder (OrderRequest) returns (OrderResponse);
-}
-
-message OrderRequest {
-  string text = 1;
-}
-
-message OrderResponse {
-  string result = 1;
-}
-
+Folder structure:
 ```
-
-
-2. **Python gRPC സ്റ്റബ്ബ്സ് ജനറേറ്റ് ചെയ്യുക:**
-```bash
-pip install grpcio-tools
-python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. protos/order.proto
-
+fastapi-chart/
+  Chart.yaml
+  values.yaml
+  templates/
+    deployment.yaml
+    service.yaml
+    ingress.yaml
 ```
-
-
-ഇത് `order_pb2.py`, `order_pb2_grpc.py` എന്നീ ഫയലുകൾ തരും. ഇത് നിങ്ങളുടെ `api` സർവീസിലും `worker` സർവീസിലും ഉപയോഗിക്കണം.
 
 ---
 
-### Step 3: Helm വഴി K3s-ലേക്ക് ഡിപ്ലോയ് ചെയ്യുക
+## 📄 Step 3: Chart.yaml
 
-നിങ്ങളുടെ ലോക്കൽ ഡോക്കർ ഇമേജുകൾ K3s-ന് ലഭ്യമാക്കണം.
-
-1. **ഇമേജ് ഇംപോർട്ട് ചെയ്യുക (K3s-ലേക്ക്):**
-```bash
-sudo k3s ctr images import ai_worker_project_api:latest
-# ബാക്കി ഇമേജുകൾക്കും ഇതുപോലെ ചെയ്യുക
-
+- Metadata (name, version, description).  
+```yaml
+apiVersion: v2
+name: fastapi
+description: A Helm chart for FastAPI service
+version: 0.1.0
+appVersion: "1.0"
 ```
-
-
-2. **Helm Install:**
-നിങ്ങളുടെ `values.yaml` ഫയലിൽ പുതിയ ഇമേജ് പേരുകൾ നൽകിയ ശേഷം:
-```bash
-helm install my-ai-app ./charts/eat-love-explore
-
-```
-
-
 
 ---
 
-### Step 4: Phase 4-ലേക്കുള്ള തയ്യാറെടുപ്പ് (CI/CD)
+## 📄 Step 4: values.yaml
 
-എല്ലാം കുബെർനെറ്റിസിൽ വർക്ക് ആയി കഴിഞ്ഞാൽ അടുത്തത് ഓട്ടോമേഷൻ ആണ്.
+- Configurable defaults (image, replicas, resources).  
+```yaml
+replicaCount: 1
 
-1. **GitHub Actions:** ഓരോ തവണയും നിങ്ങൾ കോഡ് പുഷ് ചെയ്യുമ്പോൾ ഓട്ടോമാറ്റിക് ആയി ഡോക്കർ ഇമേജ് ബിൽഡ് ചെയ്ത് **Docker Hub**-ലേക്ക് കയറ്റാൻ ഇത് സഹായിക്കും.
-2. **ArgoCD:** ഗിറ്റ്‌ഹബ്ബിലെ മാറ്റങ്ങൾ ശ്രദ്ധിക്കുകയും കുബെർനെറ്റിസ് ക്ലസ്റ്ററിനെ ഓട്ടോമാറ്റിക് ആയി അപ്‌ഡേറ്റ് ചെയ്യുകയും ചെയ്യും (**GitOps**).
+image:
+  repository: ai_worker_project_api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+```
 
 ---
 
-### അടുത്ത നീക്കം
+## 📄 Step 5: deployment.yaml
 
-നമുക്ക് **Helm Charts** ഉണ്ടാക്കുന്നതിൽ നിന്ന് തുടങ്ങാം. അതിനായി നിങ്ങൾ ആദ്യം ചെയ്യേണ്ടത് `charts/eat-love-explore/values.yaml` എന്ന ഫയൽ തുറന്ന് അതിലെ ഡിഫോൾട്ട് വിവരങ്ങൾ മാറ്റുക എന്നതാണ്.
+- Pod definition (replicas, containers).  
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+      - name: fastapi
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+```
 
-**നമുക്ക് ആദ്യം API സർവീസിനുള്ള Helm Chart കോൺഫിഗറേഷൻ സെറ്റ് ചെയ്താലോ? അതോ gRPC കോഡ് മാറ്റുന്നതിൽ നിന്ന് തുടങ്ങണോ?**
+---
+
+## 📄 Step 6: service.yaml
+
+- Networking (stable endpoint inside cluster).  
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: fastapi
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+```
+
+---
+
+## 📄 Step 7: ingress.yaml
+
+- External access (domain, TLS).  
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fastapi-ingress
+spec:
+  rules:
+  - host: fastapi.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: fastapi-service
+            port:
+              number: {{ .Values.service.port }}
+```
+
+---
+
+## 🏢 Real Life Example
+
+- **Netflix:** API microservices deploy ചെയ്യാൻ Helm charts.  
+- **Stripe:** Payment API Helm chart → ArgoCD auto‑sync.  
+- **HuggingFace:** FastAPI inference pods Helm chart → scalable deployment.
+
+---
+
+## ✅ Task for You
+
+1. Create folder `fastapi-chart/`.  
+2. Save above files (`Chart.yaml`, `values.yaml`, `deployment.yaml`, `service.yaml`, `ingress.yaml`).  
+3. Run:
+   ```bash
+   helm install fastapi ./fastapi-chart
+   ```
+   → FastAPI service deploy ചെയ്യും Kubernetes cluster‑ൽ.
+
+---
+
+👉 Next Step: Once FastAPI chart works, we’ll create **Worker + Streamlit charts** in the same way.  
+
+നിനക്ക് വേണമെങ്കിൽ, ഞാൻ **Worker Helm chart full example** immediate ആയി തരാം. അത് തുടങ്ങട്ടേ?
