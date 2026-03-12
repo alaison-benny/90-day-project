@@ -1,18 +1,9 @@
-ചേട്ടായി 👍 — ഇപ്പോൾ കാണുന്ന output:
-
-```
-Kubernetes control plane is running at https://127.0.0.1:6443
-CoreDNS is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-Metrics-server is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/https:metrics-server:https/proxy
-```
-
----
-
-## 🔹 എന്താണ് ഇതിന്റെ അർത്ഥം?
-- **Yes, this is correct.**  
-- Kubernetes cluster **successfully start ചെയ്തു** → API server (`control plane`) running at `127.0.0.1:6443`.  
-- CoreDNS + Metrics‑server also running → cluster basic services healthy.  
-- ഇനി `kubectl` + `helm` commands work ചെയ്യും, because kubeconfig properly set.
+### step for forcefully applying pods
+bash
+kubectl apply -f deployment.yaml
+kubectl rollout restart deployment fastapi
+kubectl get pods
+👉 Pod status Running ആകും.
 
 ---
 
