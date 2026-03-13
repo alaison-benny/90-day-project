@@ -90,4 +90,4 @@ spec:
 👉 ഞാൻ ready‑to‑copy Deployment.yaml + HPA.yaml തരാം.  
 അതിനുശേഷം ചേട്ടായി `kubectl apply -f` run ചെയ്ത് pods auto‑scale ചെയ്യുന്നുണ്ടോ എന്ന് verify ചെയ്യാം.  
 
-ചേട്ടായി, Stage 4‑ൽ Deployment + HPA YAML full example വേണോ?
+ചേട്ടായി, Stage 4‑ൽ Deployment + HPA YAML full example വേണോ?.
