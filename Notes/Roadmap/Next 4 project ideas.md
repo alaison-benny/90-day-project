@@ -21,11 +21,12 @@
 ### 2. **High-Availability Model Serving on Kubernetes (EKS)**
 **Goal:** Same API, but scalable + resilient.  
 **Stages:**
-1. **Cluster Setup** – Terraform + AWS EKS  
-2. **Deployment** – Kubernetes manifests, ConfigMaps, Secrets  
-3. **Scaling** – Horizontal Pod Autoscaler (HPA)  
-4. **Load Balancing** – AWS ALB/Ingress Controller  
-5. **Monitoring** – Prometheus Operator, Grafana dashboards  
+1. **Pull code from Github repo** – "https://github.com/alaison-benny/sentiments-api-project.git"  
+2. **Cluster Setup** – Terraform + AWS EKS  
+3. **Deployment** – Kubernetes manifests, ConfigMaps, Secrets  
+4. **Scaling** – Horizontal Pod Autoscaler (HPA)  
+5. **Load Balancing** – AWS ALB/Ingress Controller  
+6. **Monitoring** – Prometheus Operator, Grafana dashboards  
 
 **Concepts:** Kubernetes orchestration, autoscaling, IaC (Terraform), Helm charts.
 
