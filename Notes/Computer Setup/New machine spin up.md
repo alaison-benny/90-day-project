@@ -45,9 +45,14 @@ newgrp docker
 
 #### 4. AWS CLI v2
 
-Bash
+unzip ഇൻസ്റ്റാൾ ചെയ്യാം
+താഴെ പറയുന്ന കമാൻഡ് നൽകുക:
+
+```bash
+sudo apt update && sudo apt install unzip -y
 unzip awscliv2.zip
 sudo ./aws/install
+```
 
 #### 3. കൺഫേം ചെയ്യുക (The Debugging Step)
 
