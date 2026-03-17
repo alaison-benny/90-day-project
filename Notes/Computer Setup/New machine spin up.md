@@ -15,12 +15,11 @@ sudo apt install git -y
 git config --global user.name "alaison-benny"
 git config --global user.email "alisaalaison@gmail.com"
 ```
-👉 GitHub login SSH key ഉപയോഗിച്ച് ചെയ്യുക:
-```bash
-ssh-keygen -t ed25519 -C "alisaalaison@gmail.com"
-cat ~/.ssh/id_ed25519.pub
-```
-ഈ public key GitHub → Settings → SSH Keys-ൽ add ചെയ്യുക.
+👉 GitHub CLI (gh) Installation and GitHub login 
+
+Bash
+sudo apt update && sudo apt install gh -y
+ഇതിന് ശേഷം gh auth login എന്ന് ടൈപ്പ് ചെയ്ത് ലോഗിൻ ചെയ്യാം.
 
 ---
 
