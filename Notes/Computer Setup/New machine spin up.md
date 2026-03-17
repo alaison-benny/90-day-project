@@ -1,16 +1,10 @@
-പുതിയ Ubuntu EC2 instance-ൽ production-ready tools install ചെയ്യുന്നത് **foundation step** ആണ്. നാളെ project build ചെയ്യുമ്പോൾ debugging avoid ചെയ്യാൻ, ഇപ്പോൾ തന്നെ base setup ശരിയായി ചെയ്യണം.  
-
-### 🛠️ Production Context  
-Real-world production EC2-കളിൽ software install ചെയ്യുമ്പോൾ ചില കാര്യങ്ങൾ ശ്രദ്ധിക്കണം:  
-- **Version locking**: AWS EC2-യിൽ default repos പലപ്പോഴും പഴയ versions നൽകും. അതിനാൽ Docker, Terraform, AWS CLI, kubectl എന്നിവയ്ക്ക് official install scripts ഉപയോഗിക്കണം.  
-- **IAM roles vs Access Keys**: Production-ൽ EC2-യ്ക്ക് IAM role attach ചെയ്യുന്നത് best practice ആണ്. Access keys avoid ചെയ്യുക.  
-- **Security**: GitHub login ചെയ്യുമ്പോൾ SSH keys ഉപയോഗിക്കുക, password-based login avoid ചെയ്യുക.  
+ചേട്ടായി ❤️, വളരെ നല്ല തുടക്കം! പുതിയ Ubuntu EC2-ൽ production-ready tools install ചെയ്യുന്നത് project-ന്റെ foundation ആണ്. Python + venv കൂടി ചേർക്കുന്നത് development, testing, debugging എല്ലാം smooth ആക്കാൻ സഹായിക്കും.  
 
 ---
 
-### 📋 Step-by-Step Installation  
+### 🛠️ Base Setup – Step by Step  
 
-#### 1. Update System
+#### 1. System Update
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
@@ -18,10 +12,10 @@ sudo apt update && sudo apt upgrade -y
 #### 2. Git + GitHub Login
 ```bash
 sudo apt install git -y
-git config --global user.name "ala"
+git config --global user.name "ചേട്ടായി ❤️"
 git config --global user.email "your_email@example.com"
 ```
-👉 Production-ൽ GitHub login SSH key ഉപയോഗിച്ച് ചെയ്യുക:
+👉 GitHub login SSH key ഉപയോഗിച്ച് ചെയ്യുക:
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 cat ~/.ssh/id_ed25519.pub
@@ -30,7 +24,7 @@ cat ~/.ssh/id_ed25519.pub
 
 ---
 
-#### 3. Docker Install
+#### 3. Docker
 ```bash
 sudo apt install ca-certificates curl gnupg -y
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -42,7 +36,7 @@ sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 ```
 👉 Debugging:  
-- `docker ps` run ചെയ്യുമ്പോൾ permission denied error വന്നാൽ →  
+- `docker ps` → permission denied →  
 ```bash
 sudo usermod -aG docker $USER
 newgrp docker
@@ -82,14 +76,77 @@ terraform -version
 
 ---
 
-### ✅ Next Step  
-ഇപ്പോൾ EC2-ൽ GitHub, Docker, AWS CLI, kubectl, Terraform എല്ലാം install ചെയ്തു.  
+#### 7. Python + venv
+Ubuntu EC2-യിൽ Python3 default ആയി ഉണ്ടാകും, പക്ഷേ venv install ചെയ്യണം:
+```bash
+sudo apt install python3 python3-pip python3-venv -y
+python3 --version
+pip3 --version
+```
 
-👉 നാളെ രാവിലെ തുടങ്ങുമ്പോൾ:  
+👉 Virtual environment create ചെയ്യാൻ:
+```bash
+python3 -m venv myenv
+source myenv/bin/activate
+```
+Deactivate ചെയ്യാൻ:
+```bash
+deactivate
+```
+
+---
+
+### ✅ Next Step  
+ഇപ്പോൾ EC2-ൽ GitHub, Docker, AWS CLI, kubectl, Terraform, Python, venv എല്ലാം install ചെയ്തു.  
+
+👉 ഇനി project തുടങ്ങുമ്പോൾ:  
 1. GitHub repo clone ചെയ്യാം.  
 2. Terraform ഉപയോഗിച്ച് AWS EKS cluster build ചെയ്യാം.  
 
+-----------------------------
 
-നാളെ തുടങ്ങുമ്പോൾ GitHub repo clone ചെയ്യുന്നതിൽ നിന്ന് തുടങ്ങട്ടെ?
+ഇനി GitHub repo clone ചെയ്ത് cluster setup തുടങ്ങാം.  
 
+### 🛠️ Production Context  
+Real-world production-ൽ GitHub repo clone ചെയ്യുമ്പോൾ:  
+- **Access Method**: HTTPS vs SSH. Production-ൽ SSH keys ഉപയോഗിക്കുന്നത് secure ആണ്.  
+- **Branch Strategy**: `main` branch production-ready code, `dev` branch testing.  
+- **CI/CD Integration**: Clone ചെയ്ത repo pipelines-ലേക്ക് connect ചെയ്യാം (GitHub Actions, Jenkins).  
 
+---
+
+### 📋 Step-by-Step Commands  
+
+#### 1. Repo Clone (SSH recommended)
+```bash
+git clone git@github.com:alaison-benny/sentiments-api-project.git
+```
+
+👉 SSH key GitHub-ൽ add ചെയ്തിട്ടില്ലെങ്കിൽ HTTPS ഉപയോഗിക്കാം:
+```bash
+git clone https://github.com/alaison-benny/sentiments-api-project.git
+```
+
+#### 2. Repo Verify
+```bash
+cd sentiments-api-project
+ls -la
+git status
+```
+
+👉 Debugging:  
+- **Error: Permission denied (publickey)** → SSH key GitHub-ൽ add ചെയ്തിട്ടില്ല.  
+- **Error: Could not resolve host** → Internet/DNS issue.  
+- **Error: Repository not found** → URL തെറ്റാണ് അല്ലെങ്കിൽ access ഇല്ല.  
+
+---
+
+### ✅ Next Step  
+Repo clone ചെയ്ത ശേഷം, cluster setup തുടങ്ങാം. അതായത് **Terraform + AWS EKS**.  
+
+👉 Production-ൽ Terraform workflow:  
+1. `terraform init` → plugins download  
+2. `terraform plan` → infra preview  
+3. `terraform apply` → infra create  
+
+repo clone command run ചെയ്ത് verify ചെയ്തോ? Repo-ൽ പ്രവേശിച്ചാൽ, ഞാൻ Terraform setup തുടങ്ങാൻ detailed production workflow കൊടുക്കാം. 🚀
