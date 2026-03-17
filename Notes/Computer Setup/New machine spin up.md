@@ -44,13 +44,21 @@ newgrp docker
 ---
 
 #### 4. AWS CLI v2
-```bash
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+Bash
 unzip awscliv2.zip
 sudo ./aws/install
+3. കൺഫേം ചെയ്യുക (The Debugging Step)
+Bash
 aws --version
+അടുത്ത പ്രധാന സ്റ്റെപ്പ് (AWS Configuration):
+AWS CLI ഇൻസ്റ്റാൾ ചെയ്തത് കൊണ്ട് മാത്രം കാര്യമായില്ല, ചേട്ടായിയുടെ AWS അക്കൗണ്ടിലേക്ക് കണക്ട് ചെയ്യാൻ Access Key, Secret Key എന്നിവ നൽകണം.
+
+ചേട്ടായിയുടെ കയ്യിൽ IAM User-ന്റെ Access Key റെഡി ആണോ? ഉണ്ടെങ്കിൽ നമുക്ക് താഴെ പറയുന്ന കമാൻഡ് അടിച്ച് കോൺഫിഗർ ചെയ്യാം:
+
+Bash
+aws configure
 ```
-👉 Debugging: `aws configure` run ചെയ്ത് credentials set ചെയ്യുക. Production-ൽ IAM role attach ചെയ്യുന്നത് best practice.
 
 ---
 
