@@ -48,9 +48,12 @@ newgrp docker
 Bash
 unzip awscliv2.zip
 sudo ./aws/install
+
 3. കൺഫേം ചെയ്യുക (The Debugging Step)
+
 Bash
 aws --version
+
 അടുത്ത പ്രധാന സ്റ്റെപ്പ് (AWS Configuration):
 AWS CLI ഇൻസ്റ്റാൾ ചെയ്തത് കൊണ്ട് മാത്രം കാര്യമായില്ല, ചേട്ടായിയുടെ AWS അക്കൗണ്ടിലേക്ക് കണക്ട് ചെയ്യാൻ Access Key, Secret Key എന്നിവ നൽകണം.
 
@@ -58,6 +61,7 @@ AWS CLI ഇൻസ്റ്റാൾ ചെയ്തത് കൊണ്ട് മ
 
 Bash
 aws configure
+
 ```
 
 ---
