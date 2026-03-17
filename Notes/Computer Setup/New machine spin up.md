@@ -49,21 +49,20 @@ Bash
 unzip awscliv2.zip
 sudo ./aws/install
 
-3. കൺഫേം ചെയ്യുക (The Debugging Step)
+#### 3. കൺഫേം ചെയ്യുക (The Debugging Step)
 
-Bash
+```bash
 aws --version
+```
 
-അടുത്ത പ്രധാന സ്റ്റെപ്പ് (AWS Configuration):
+#### അടുത്ത പ്രധാന സ്റ്റെപ്പ് (AWS Configuration):
 AWS CLI ഇൻസ്റ്റാൾ ചെയ്തത് കൊണ്ട് മാത്രം കാര്യമായില്ല, ചേട്ടായിയുടെ AWS അക്കൗണ്ടിലേക്ക് കണക്ട് ചെയ്യാൻ Access Key, Secret Key എന്നിവ നൽകണം.
 
 ചേട്ടായിയുടെ കയ്യിൽ IAM User-ന്റെ Access Key റെഡി ആണോ? ഉണ്ടെങ്കിൽ നമുക്ക് താഴെ പറയുന്ന കമാൻഡ് അടിച്ച് കോൺഫിഗർ ചെയ്യാം:
 
-Bash
+```bash
 aws configure
-
 ```
-
 ---
 
 #### 5. kubectl (Kubernetes CLI)
