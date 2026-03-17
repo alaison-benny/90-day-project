@@ -12,12 +12,12 @@ sudo apt update && sudo apt upgrade -y
 #### 2. Git + GitHub Login
 ```bash
 sudo apt install git -y
-git config --global user.name "alaison"
-git config --global user.email "your_email@example.com"
+git config --global user.name "alaison-benny"
+git config --global user.email "alisaalaison@gmail.com"
 ```
 👉 GitHub login SSH key ഉപയോഗിച്ച് ചെയ്യുക:
 ```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "alisaalaison@gmail.com"
 cat ~/.ssh/id_ed25519.pub
 ```
 ഈ public key GitHub → Settings → SSH Keys-ൽ add ചെയ്യുക.
