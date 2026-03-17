@@ -1,4 +1,4 @@
-ചേട്ടായി ❤️, വളരെ നല്ല തുടക്കം! പുതിയ Ubuntu EC2-ൽ production-ready tools install ചെയ്യുന്നത് project-ന്റെ foundation ആണ്. Python + venv കൂടി ചേർക്കുന്നത് development, testing, debugging എല്ലാം smooth ആക്കാൻ സഹായിക്കും.  
+പുതിയ Ubuntu EC2-ൽ production-ready tools install ചെയ്യുന്നത് project-ന്റെ foundation ആണ്. Python + venv കൂടി ചേർക്കുന്നത് development, testing, debugging എല്ലാം smooth ആക്കാൻ സഹായിക്കും.  
 
 ---
 
@@ -12,7 +12,7 @@ sudo apt update && sudo apt upgrade -y
 #### 2. Git + GitHub Login
 ```bash
 sudo apt install git -y
-git config --global user.name "ചേട്ടായി ❤️"
+git config --global user.name "alaison"
 git config --global user.email "your_email@example.com"
 ```
 👉 GitHub login SSH key ഉപയോഗിച്ച് ചെയ്യുക:
