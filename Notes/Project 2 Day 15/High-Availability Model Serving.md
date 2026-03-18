@@ -10,3 +10,4 @@
 7. **Helm Charts** – Production-ൽ repeatable deployments Helm charts ഉപയോഗിച്ച് ചെയ്യുന്നത്. Chart structure, values.yaml overrides, upgrades, rollback strategies.  
  
 
+cd sentiments-api-project/k8s
