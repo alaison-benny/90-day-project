@@ -46,6 +46,13 @@ kubectl get pods -n monitoring
 kubectl port-forward deployment/kube-stack-grafana 3000:3000 -n monitoring
 ```
 
+or 
+
+```bash
+kubectl port-forward --address 0.0.0.0 deployment/kube-stack-grafana 3000:3000 -n monitoring
+```
+
+
 **ഇത് ചെയ്ത ശേഷം:**
 1. ബ്രൗസറിൽ `localhost:3000` എന്ന് അടിച്ചു നോക്കൂ (ചേട്ടായി ലോക്കൽ സിസ്റ്റത്തിലാണ് ചെയ്യുന്നതെങ്കിൽ).
 2. ഇനി അതല്ല, ചേട്ടായിയുടെ ഉബുണ്ടു സെർവറിന്റെ ഐപി വഴിയാണ് നോക്കുന്നതെങ്കിൽ `http://YOUR_SERVER_IP:3000` എന്ന് അടിക്കണം. (സെക്യൂരിറ്റി ഗ്രൂപ്പിൽ 3000 പോർട്ട് തുറക്കാൻ മറക്കരുത്!).
