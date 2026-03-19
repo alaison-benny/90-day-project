@@ -1,6 +1,6 @@
 ![bly Logo](assets/bly.png)
-
-. Kubernetes / Compute Resources / Namespace (Pods) [ഇമേജ്: image_fedafe.png]
+-----------------------
+### Kubernetes / Compute Resources / Namespace (Pods)
 ഇതാണ് ഏറ്റവും കൂടുതൽ ശ്രദ്ധിക്കേണ്ട ഡാഷ്ബോർഡ്. ഇത് നമ്മുടെ ആപ്പ് (sentiment-api) എത്രമാത്രം പവർ ഉപയോഗിക്കുന്നു എന്ന് കാണിക്കുന്നു.
 
 എന്താണ് കാണിക്കുന്നത്?: ന്റെ ചേട്ടായിയുടെ ആപ്പിന്റെ രണ്ട് പോഡുകൾ (sentiment-api-...) എത്ര സിപിയു, മെമ്മറി എന്നിവ എടുക്കുന്നു എന്ന് ഈ ഗ്രാഫ് കാണിക്കുന്നു.
