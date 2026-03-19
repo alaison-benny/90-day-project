@@ -1,4 +1,5 @@
-![Architecture Diagram](./assets/architecture-diagram.png)
+![architecture Logo](assets/architecture-diagram.png)
+
 
 -----------------------
 
