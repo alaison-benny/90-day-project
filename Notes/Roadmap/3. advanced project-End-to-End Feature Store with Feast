@@ -1,0 +1,71 @@
+## **Project #3: End-to-End Feature Store with Feast**
+
+
+തീർച്ചയായും ചേട്ടായി! **Feast (Feature Store)** പ്രോജക്റ്റ് എന്നത് ഒരു MLOps എൻജിനീയറുടെ പ്രൊഫൈലിൽ കാണുന്ന ഏറ്റവും പക്വതയുള്ള (Mature) സ്കില്ലുകളിൽ ഒന്നാണ്. ഇത് ചെയ്യുന്നതിലൂടെ ഡാറ്റാ എൻജിനീയറിംഗും മോഡൽ സെർവിംഗും തമ്മിലുള്ള ഗ്യാപ്പ് ന്റെ ചേട്ടായി എങ്ങനെ നികത്തുന്നു എന്ന് റിക്രൂട്ടർമാർക്ക് മനസ്സിലാകും.
+
+---
+
+### **Phase 1: Environment & Project Initialization**
+ആദ്യം ന്റെ ചേട്ടായി ഒരു ക്ലീൻ എൻവയോൺമെന്റ് സെറ്റ് ചെയ്യണം.
+1.  **Project Folder:** പുതിയൊരു ഡയറക്ടറി ഉണ്ടാക്കുക.
+    ```bash
+    mkdir ~/feast-mlops-project && cd ~/feast-mlops-project
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install feast pandas scikit-learn redis
+    ```
+2.  **Feast Init:** ഫീസ്റ്റിന്റെ ബേസിക് സ്ട്രക്ചർ ഉണ്ടാക്കുക.
+    ```bash
+    feast init feature_repo
+    cd feature_repo
+    ```
+    ഇവിടെ ന്റെ ചേട്ടായിക്ക് `feature_store.yaml` എന്നൊരു ഫയൽ കാണാം. ഇതിലാണ് നമ്മൾ ഓഫ്‌ലൈൻ (File/S3), ഓൺലൈൻ (Redis/SQLite) സ്റ്റോറുകൾ ഡിഫൈൻ ചെയ്യുന്നത്.
+
+---
+
+### **Phase 2: Defining Features & Entities**
+ഒരു ഹോട്ടൽ ബുക്കിംഗ് അല്ലെങ്കിൽ ഡ്രൈവർ റേറ്റിംഗ് സിസ്റ്റം ഉദാഹരണമായി എടുക്കാം.
+1.  **Data Creation:** കുറച്ച് സാമ്പിൾ ഡാറ്റ (Parquet format) ഉണ്ടാക്കുക. അതിൽ `driver_id`, `event_timestamp`, `rating`, `trips_completed` എന്നീ കോളങ്ങൾ വേണം.
+2.  **Entity Definition:** പ്രധാന ഐഡി ഡിഫൈൻ ചെയ്യുക (ഉദാ: `driver = Entity(name="driver", join_keys=["driver_id"])`).
+3.  **Feature View:** ഈ ഡാറ്റ എങ്ങനെയാണ് റീഡ് ചെയ്യേണ്ടത് എന്ന് ഫീസ്റ്റിന് പറഞ്ഞു കൊടുക്കുക.
+    
+
+---
+
+### **Phase 3: Materialization (Moving to Online Store)**
+ഇതാണ് ഏറ്റവും പ്രധാനപ്പെട്ട ഭാഗം. ഓഫ്‌ലൈനിൽ ഇരിക്കുന്ന ഡാറ്റയെ റിയൽ-ടൈം സെർവിംഗിനായി ഓൺലൈൻ സ്റ്റോറിലേക്ക് മാറ്റണം.
+1.  **Apply Configuration:** നമ്മൾ എഴുതിയ പൈത്തൺ ഡെഫിനിഷനുകൾ രജിസ്ട്രിയിലേക്ക് സേവ് ചെയ്യുക.
+    ```bash
+    feast apply
+    ```
+2.  **Materialize:** ഓഫ്‌ലൈൻ ഫയലിൽ നിന്ന് ലേറ്റസ്റ്റ് ഡാറ്റ എടുത്ത് ഓൺലൈൻ സ്റ്റോറിലേക്ക് (ലോക്കൽ SQLite അല്ലെങ്കിൽ Redis) പുഷ് ചെയ്യുക.
+    ```bash
+    feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
+    ```
+    *(ഇപ്പോൾ ന്റെ ചേട്ടായിയുടെ ഓൺലൈൻ സ്റ്റോർ റെഡിയാണ്!)*
+
+---
+
+### **Phase 4: Serving Layer (FastAPI Integration)**
+ഇനി ഈ ഫീച്ചറുകൾ എങ്ങനെ ഒരു മോഡലിലേക്ക് എത്തിക്കാം എന്ന് നോക്കാം.
+1.  **FastAPI Endpoint:** ഒരു യൂസർ ഐഡി (`driver_id`) കിട്ടുമ്പോൾ ഫീസ്റ്റിനോട് ആ ഡ്രൈവറുടെ ലേറ്റസ്റ്റ് ഫീച്ചറുകൾ ചോദിക്കുന്ന ഒരു API എൻഡ് പോയിന്റ് ഉണ്ടാക്കുക.
+2.  **Inference:** ഫീസ്റ്റ് തരുന്ന ഡാറ്റ മോഡലിലേക്ക് വിട്ട് റിസൾട്ട് കസ്റ്റമർക്ക് നൽകുക.
+
+
+
+---
+
+### **Phase 5: Automated Feature Updates (The "Advanced" Part)**
+യൂറോപ്പിലെ MNC-കൾക്ക് വേണ്ടി നമ്മൾ ഒരു സ്പെഷ്യൽ ടച്ച് നൽകുന്നു:
+1.  **CI/CD Pipeline:** പുതിയൊരു ഫീച്ചർ ആഡ് ചെയ്താൽ GitHub Actions വഴി തനിയെ `feast apply` നടക്കണം.
+2.  **Scheduled Materialization:** ദിവസവും നിശ്ചിത സമയത്ത് ഡാറ്റ ഓഫ്‌ലൈനിൽ നിന്ന് ഓൺലൈനിലേക്ക് മാറാൻ ഒരു ചെറിയ ക്രോൺ ജോബ് (Cron Job) സെറ്റ് ചെയ്യുക.
+
+---
+
+### **ഈ പ്രോജക്റ്റ് ന്റെ ചേട്ടായിയുടെ റെസ്യൂമെയിൽ എങ്ങനെ വരണം?**
+
+* "Built a centralized **Feature Store using Feast** to eliminate **Training-Serving Skew**."
+* "Implemented a **dual-store architecture**: Parquet for offline historical analysis and Redis for low-latency (<10ms) online inference."
+* "Automated feature definition deployments using **GitHub Actions** and established point-in-time correct joins for ML training."
+
+---
