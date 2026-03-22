@@ -54,6 +54,6 @@ kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/dow
 
 -----
 
-### **ന്റെ ചേട്ടായിക്ക് ഒരു പ്രോ-ടിപ്പ്:**
+### **ഒരു പ്രോ-ടിപ്പ്:**
 
 കമ്പനിയിൽ ജോലി ചെയ്യുമ്പോൾ **"Production-ready"** ഇൻസ്റ്റലേഷൻ ആണ് നമ്മൾ നോക്കുന്നത്. അതിനായി `install.yaml` എന്നതിന് പകരം `quick-start-postgres.yaml` പോലുള്ള ഡാറ്റാബേസ് ഉള്ള വേർഷനുകൾ ആയിരിക്കും ഉപയോഗിക്കുക.
